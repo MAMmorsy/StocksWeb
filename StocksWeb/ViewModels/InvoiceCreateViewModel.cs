@@ -11,7 +11,7 @@ namespace StocksWeb.ViewModels
     public class InvoiceCreateViewModel
     {
         public string InvoiceNo { get; set; } = null!;
-        public DateTime InvoiceDate { get; set; }
+        public DateTime InvoiceDate { get; set; }= DateTime.Now;
         public int UserId { get; set; }
         public decimal Total { get; set; }
         public decimal Taxes { get; set; }
@@ -23,6 +23,8 @@ namespace StocksWeb.ViewModels
 
     public class InvoiceItemsCreateDTO 
     {
+        public string? ProductName { get; set; }
+        public string? UnitName { get; set; }
         public int StoreProductId { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }

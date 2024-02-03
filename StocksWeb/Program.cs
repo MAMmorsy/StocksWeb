@@ -10,7 +10,7 @@ builder.Services.AddAuthentication("cookies")
     options.Cookie.Name = "user";
     options.ExpireTimeSpan = TimeSpan.FromHours(8);
     options.LoginPath = "/user/Login";
-    options.AccessDeniedPath = "/user/Login";
+    options.AccessDeniedPath = "/home/UserAccessDenied";
     options.LogoutPath = "/";
 });
 

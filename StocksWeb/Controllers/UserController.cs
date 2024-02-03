@@ -46,7 +46,7 @@ namespace StocksWeb.Controllers
                                 new (ClaimTypes.Role, userData.RoleName),
                                 new ("token",userData.Token ),
                             };
-                            var cI = new ClaimsIdentity(claims, "pwd", "Name", "Admin");
+                            var cI = new ClaimsIdentity(claims, "pwd", "Name", userData.RoleName);
                             var cP = new ClaimsPrincipal(cI);
                             await HttpContext.SignInAsync(cP);
                             return RedirectToAction("Index", "Home"); ;
@@ -62,15 +62,13 @@ namespace StocksWeb.Controllers
             return View(user);
         }
 
-        [Authorize(Policy = "IsLoggedIn")]
-        public ActionResult LogOut()
-        {
-            HttpContext.Session.Remove("loggedinuser");
-            return RedirectToAction("Login");
-        }
+        //[Authorize(Policy = "IsLoggedIn")]
+        //public ActionResult LogOut()
+        //{
+        //    HttpContext.Session.Remove("loggedinuser");
+        //    return RedirectToAction("Login");
+        //}
 
-
-        
         public async Task<Response<LoginResponseViewModel>> GetUserData(LoginViewModel loginViewModel)
         {
             string encUserName = EncryptionHelper.EncryptString(loginViewModel.UserName.ToString(), _config.GetValue<string>("Pass"));
@@ -97,6 +95,16 @@ namespace StocksWeb.Controllers
 
             return responseS;
         }
+
+
+        [Authorize(Policy = "IsLoggedIn")]
+        public async Task<IActionResult> logout()
+        {
+            var callbackUrl = Url.Action(nameof(Index), "Home");
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Login");
+        }
+
 
         // GET: UserController
         public ActionResult Index()

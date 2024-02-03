@@ -8,10 +8,6 @@ namespace StocksWeb.ViewModels
 {
     public class ProductSearchViewModel
     {
-        public int StoreId { get; set; }
-    }
-    public class EncProductSearchViewModel
-    {
         public string StoreId { get; set; }
     }
 }
