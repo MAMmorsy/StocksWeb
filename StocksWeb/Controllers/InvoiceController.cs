@@ -97,6 +97,7 @@ namespace StocksWeb.Controllers
                 ViewData["RetvalMsg"] = "General error, Please try again later";
 
             ViewData["unitList"] = new SelectList(unitsList, "UnitId", "UnitName");
+            
             invoiceCreateViewModel.items=new List<InvoiceItemsCreateDTO>();
 
             return View(invoiceCreateViewModel);
@@ -190,7 +191,6 @@ namespace StocksWeb.Controllers
             return new JsonResult(units);
         }
 
-
         public async Task<Response<List<StoreListViewModel>>> GetStoresData()
         {
             string queryString = _config.GetValue<string>("ServiceAPIBaseUrl") + $"Store/GetAllStores";
@@ -221,7 +221,6 @@ namespace StocksWeb.Controllers
             Response<List<UnitsListViewModel>>? response = await Helper.GetAPIAsync<List<UnitsListViewModel>>(queryString, token, unitSearchJson);
             return response;
         }
-
 
         // GET: InvoiceController/Edit/5
         public ActionResult Edit(int id)
