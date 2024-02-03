@@ -1,0 +1,460 @@
+body,
+html {
+  height: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.login-icon {
+  top: 35px;
+  left: 20px;
+  font-size: 24px;
+  color: #1961aa;
+}
+
+a,
+a:hover,
+a:focus,
+button,
+button:hover,
+button:focus,
+.btn:hover,
+.btn:focus,
+.form-control:hover,
+.form-control:focus,
+select:hover,
+select:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: none;
+  color: inherit;
+}
+.form-control {
+  background-color: #f9fcff;
+}
+.navbar {
+  height: 80px;
+}
+
+.navbar .profile-dropdown .dropdown-menu {
+  top: 127%;
+  min-width: 16rem;
+  right: 0;
+  left: auto;
+}
+
+.navbar .profile-dropdown .dropdown-menu .dropdown-divider {
+  margin: 0.5rem 12px;
+}
+
+.navbar .profile-dropdown .dropdown-menu .dropdown-item.active,
+.dropdown-item:active {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
+.navbar .profile-dropdown .menu-icon {
+  width: 14px;
+  height: 27px;
+}
+
+.navbar .profile-dropdown .menu-icon i {
+  vertical-align: sub;
+}
+
+/* up trinagle */
+.navbar .profile-dropdown .profile-info:after {
+  position: absolute;
+  left: 70%;
+  top: -20px;
+  width: 0;
+  height: 0;
+  content: '';
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 12px solid #1961aa;
+}
+
+.sidebar {
+  transition: all 0.5s ease-in-out;
+  overflow: auto;
+  /* background-color: #f1f1f1; */
+  width: 220px;
+}
+
+.sidebar.collapse {
+  display: block;
+  width: 55px;
+}
+
+.sidebar::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #cecdcd;
+  outline: 1px solid #e0e0e0;
+  border-radius: 3px;
+}
+
+.sidebar .menu-icon {
+  width: 30px;
+  height: 30px;
+  font-size: 20px;
+  font-size: 28px;
+  line-height: 28px;
+  vertical-align: middle;
+  color: #1961aa;
+}
+
+.sidebar li a,
+.sidebar li a.collapsed.active {
+  display: block;
+  padding: 8px 12px;
+  color: #808080;
+  border-left: 0px solid #dedede;
+  text-decoration: none;
+}
+
+.sidebar li a.active {
+  color: #1961aa;
+  background-color: #eff3f0;
+  transition: all 0.5s ease-in-out;
+}
+
+.sidebar li a:hover {
+  background-color: #eff3f0 !important;
+  color: #1961aa;
+}
+
+/* .sidebar li a i {
+  padding-right: 30px;
+} */
+
+.sidebar ul li .sub-menu li a {
+  padding: 8px 27px;
+}
+
+.sidebar ul li .sub-menu li a:hover {
+  background-color: #faf8f1;
+  padding-left: 20px;
+  transition: all 0.5s ease-in-out;
+}
+
+.sidebar .sub-menu li a.active {
+  color: #ba9b38;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.sidebar li a .nav-label,
+.sidebar li a .nav-label + span {
+  transition: all 0.5s ease-in-out;
+}
+
+/**
+/* Body and main layout Style
+**/
+
+.body-layout {
+  /* background-image: url("../../assets/images/pattern.png"); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  height: calc(100% - 80px);
+  top: 80px;
+  position: relative;
+}
+
+.main .content {
+  position: absolute;
+  left: 220px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  transition: all 0.5s ease-in-out;
+  overflow: auto;
+  background: #f5f4fb;
+}
+
+.main .content.expand {
+  position: absolute;
+  left: 55px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+/**
+/* Checkbox Style
+**/
+
+.container-check {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  /* margin-bottom: 12px; */
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  line-height: 25px;
+}
+
+.container-check input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 1px solid #2f6640;
+}
+
+.container-check input:checked ~ .checkmark {
+  background-color: #fff;
+  border: 1px solid #2f6640;
+}
+
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.container-check input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.container-check .checkmark:after {
+  left: 7px;
+  top: 4px;
+  width: 5px;
+  height: 10px;
+  border: solid #2f6640;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+@media (min-width: 768px) {
+  .sidebar.collapse li a .nav-label,
+  .sidebar.collapse li a .nav-label + span {
+    /* display: none; */
+    transition: all 0.5s ease-in-out;
+  }
+  .sidebar.collapse .sub-menu {
+    display: none;
+  }
+}
+.sidebar.collapse li a .nav-label,
+.sidebar.collapse li a .nav-label + span {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    background: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+  }
+  .sidebar {
+    width: 0;
+  }
+  .sidebar.collapse {
+    width: 220px;
+  }
+  .main .content {
+    left: 0;
+    padding: 5px !important;
+  }
+  .main .content.expand {
+    left: 0;
+  }
+}
+
+/* Styling Table*/
+
+.table.tableFixHead {
+  overflow-y: auto;
+  height: 310px;
+}
+
+.dataTables_scrollHeadInner {
+  padding-right: 0 !important;
+  width: 100% !important;
+}
+
+.table.tableFixHead {
+  overflow-y: auto;
+  /*height: 465px;*/
+  height: 600px;
+  width: 100% !important;
+}
+
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  padding: 0.6rem;
+  border: 0;
+  background: #1961aa;
+  color: #fff;
+  font-size: 13px;
+}
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.table td {
+  padding: 0.4rem;
+  font-size: 14px;
+  border: 0;
+}
+
+.tableFixHead::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+.tableFixHead::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.tableFixHead::-webkit-scrollbar-thumb {
+  background-color: #cecdcd;
+  outline: 1px solid #e0e0e0;
+  border-radius: 3px;
+}
+
+@media (min-width: 576px) {
+  .create-modal .modal-dialog {
+    max-width: 70vw;
+  }
+}
+
+.ch-days .la-check {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+  font-size: 22px;
+  color: #fff;
+}
+
+.ch-days .day-btn {
+  border-color: #1961aa;
+  background: #fff;
+  color: #1961aa;
+}
+.ch-days .day-btn.get-btn {
+  background: #1961aa;
+  color: #fff;
+}
+.blue-link {
+  color: #0088f6;
+  text-decoration: none; /* Remove underlines, if desired */
+}
+
+.blue-link:hover {
+  text-decoration: underline; /* Add underline on hover, if desired */
+}
+
+.page-pagination {
+  padding: 10px 0;
+}
+.page-pagination .pagination {
+  margin-bottom: 0;
+}
+.page-pagination .pagination .page-item .page-link {
+  border: 0;
+  border-radius: 50% !important;
+  background-color: transparent;
+  color: #333;
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0 8px;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-pagination .pagination .page-item.disabled .page-link {
+  background-color: #d1d1d1;
+}
+.page-pagination .pagination .page-item.active .page-link {
+  box-shadow: 0 3px 9px rgba(18, 44, 120, 0.4);
+  background-color: #1961aa;
+  color: #fff;
+}
+.page-pagination .pagination .page-item.edges:not(:hover) .page-link {
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.16);
+  background-color: #fff;
+}
+.page-pagination .pagination .page-item.edges:not(:hover):not(.disabled) .page-link {
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.16);
+  background-color: #fff;
+}
+.page-pagination .pagination .page-item:hover .page-link {
+  box-shadow: 0 3px 9px rgba(18, 44, 120, 0.4);
+  background-color: #3190d6;
+  color: #fff;
+}
+
+/* <div class="page-pagination d-flex justify-content-end" id="myTable_paginate" style="">
+  <ul class="pagination">
+    <li class="page-item edges disabled">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">«</span>
+      </a>
+    </li>
+
+
+    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">4</a></li>
+    <li class="page-item"><a class="page-link" href="#">5</a></li>
+    <li class="page-item"><a class="page-link">...</a></li>
+    <li class="page-item"><a class="page-link" href="#">99</a></li>
+
+    <li class="page-item edges">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">»</span>
+      </a>
+    </li>
+  </ul>
+</div> */

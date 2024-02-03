@@ -1,0 +1,252 @@
+.modal {
+  --bs-modal-header-padding: 0.75rem;
+  --bs-modal-padding: 0.75rem;
+}
+.stepper.stepper-links .stepper-nav .stepper-item .stepper-title {
+  font-size: 1.1rem;
+}
+.form-control.form-control-solid {
+  border-color: var(--bs-gray-300);
+}
+.form-check.form-check-sm .form-check-input {
+  height: 1.2rem;
+  width: 1.2rem;
+}
+.form-control {
+  padding: 0.65rem 0.7rem;
+}
+.form-select {
+  padding: 0.65rem 3rem 0.65rem 0.7rem;
+}
+.form-label {
+  font-size: 0.9rem;
+}
+
+.primary-text {
+  color: #1961aa;
+}
+
+.tableFixHead .table th {
+  background: #1961aa !important;
+  color: #fff !important;
+}
+
+[data-kt-app-layout='light-sidebar'][data-kt-app-header-fixed='true'] .app-header {
+  background-color: var(--bs-app-blank-bg-color);
+}
+
+.g_settings .nav-line-tabs .nav-item .nav-link {
+  padding: 0.7rem 0;
+  border: 0;
+  border-radius: 3px;
+  margin: 0 1rem;
+  font-size: 1.1rem;
+  background: var(--bs-gray-100);
+}
+.g_settings .nav-line-tabs .nav-item .nav-link.active,
+.g_settings .nav-line-tabs .nav-item.show .nav-link,
+.g_settings .nav-line-tabs .nav-item .nav-link:hover:not(.disabled) {
+  border: 0;
+  background-color: var(--bs-primary);
+  color: var(--bs-white) !important;
+}
+.g_settings .custom-head {
+  margin: 20px -40px;
+  background: var(--bs-gray-300);
+  min-height: 50px;
+}
+.g_settings .custom-head .card-title {
+  font-size: 1.1rem;
+}
+
+.btn-submit {
+  margin: 24px 0 0 auto;
+  display: block;
+}
+
+.g_settings .image-input .image-input-wrapper {
+  background-position: center center;
+}
+
+textarea[name='kt_docs_tinymce_basic'] table td {
+  border: 0;
+}
+
+.svg-icon.svg-icon-welcome svg {
+  width: 3.5rem;
+  height: 3.5rem;
+}
+.we-card:hover svg path:not([opacity='0.3']) {
+  transition: 0.4s all ease-in-out;
+  /* color: #1e1e2d; */
+  opacity: 1;
+}
+.we-card:hover svg path[opacity='0.3'] {
+  transition: 0.4s all ease-in-out;
+  opacity: 1;
+}
+.we-card:hover svg path[add='just'] {
+  transition: 0.4s all ease-in-out;
+  color: initial;
+  opacity: 0.3;
+}
+
+.we-card {
+  transition: 0.4s all ease-in-out;
+}
+
+.we-nav {
+  transition: 0.4s all ease-in-out;
+  width: 110px;
+  border: 1px solid #1e1e2d;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  line-height: 26px;
+  text-align: center;
+  transition: 0.4s all ease-in-out;
+}
+.we-nav span {
+  transition: 0.4s all ease-in-out;
+  background: #1e1e2d;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+  width: 60px;
+  height: 100%;
+  text-align: center;
+  line-height: 30px;
+}
+.we-nav i {
+  transition: 0.4s all ease-in-out;
+  background: #ddd;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
+  width: 50px;
+  height: 100%;
+  line-height: 30px;
+  font-size: 20px;
+  color: #3f3f5f;
+}
+
+.we-nav:hover span {
+  transition: 0.4s all ease-in-out;
+  background: #ddd;
+  color: #3f3f5f;
+}
+.we-nav:hover i {
+  transition: 0.4s all ease-in-out;
+  background: #1e1e2d;
+  color: #fff;
+}
+
+.nav.nav-tabs.nav-pills {
+  height: 55rem;
+  overflow-y: auto;
+  width: 100%;
+}
+.nav.nav-tabs.nav-pills i[class*=' la-'] {
+  font-size: 1.5rem;
+}
+.api-details-internal {
+  background: #f5f7fa;
+}
+
+.api-details-internal .nav.nav-tabs.nav-pills.api_head-menu {
+  height: auto;
+}
+
+.scrollable {
+  height: 47rem;
+  overflow-y: auto;
+}
+.sidenav {
+  font-size: 13px;
+  /* margin-top: 12px; */
+}
+.sidenav .title {
+  color: #333;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 6px 12px;
+  display: block;
+  border-radius: 4px;
+}
+.api_head-menu .sidenav .int-menu {
+  height: auto;
+  border-bottom: 0.1px solid #ddd;
+  margin: 0 0 8px;
+  padding-bottom: 12px;
+}
+.sidenav .int-menu .nav-list-item {
+  margin-left: 12px;
+}
+.sidenav .int-menu .nav-list-item a {
+  color: #333;
+  padding: 5px 12px;
+  display: block;
+  border-radius: 4px;
+  display: flex;
+}
+.api_head-menu a:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.sidenav .int-menu .nav-list-item .typ-name {
+  display: inline-block;
+  width: 20%;
+  font-size: 12px;
+  font-weight: 600;
+}
+.sidenav .int-menu .nav-list-item .txt {
+  display: inline-block;
+  width: 78%;
+  line-height: 1.2;
+}
+.sidenav .int-menu .nav-list-item .typ-name.typ-get {
+  color: #61affe;
+}
+.sidenav .nav-list-item .typ-name.typ-post {
+  color: #49cc90;
+}
+
+.list-group.list-group-apis {
+  position: sticky;
+  right: 4%;
+  left: 4%;
+  top: 12%;
+}
+.fixed-api-menu {
+  position: sticky;
+  top: 10%;
+}
+.act-actions {
+  position: absolute;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  bottom: 12px;
+}
+
+.accordion .accordion-item {
+  margin-bottom: 0.7rem;
+}
+.accordion .accordion-item .accordion-header .accordion-button {
+  background: #f1faff;
+  color: #009ef7;
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.app-navbar .menu-badge-cust {
+  position: absolute;
+  zoom: 0.8;
+  left: -8px;
+  top: 0;
+}
+.border-bottom {
+  border-bottom: 1px solid #eee !important;
+}

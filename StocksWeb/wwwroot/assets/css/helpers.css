@@ -1,0 +1,178 @@
+/* genral classes */
+
+.box-shadow-1 {
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.16);
+}
+
+.box-shadow-2 {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08) !important;
+}
+
+.btn-save-cancel {
+  padding: 6px 40px !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* border and border radius */
+
+.br-0 {
+  border-radius: 0 !important;
+}
+
+.br-6 {
+  border-radius: 6px !important;
+}
+
+.b-tr-6 {
+  border-top-right-radius: 6px !important;
+}
+
+.b-tl-6 {
+  border-top-left-radius: 6px !important;
+}
+
+.b-br-6 {
+  border-bottom-right-radius: 6px !important;
+}
+
+.b-bl-6 {
+  border-bottom-left-radius: 6px !important;
+}
+
+/* backgrounds and text colors */
+
+.primary-bg {
+  background-color: #1961aa !important;
+}
+
+.primary-border {
+  border: 1px solid #1961aa;
+}
+
+.primary-text {
+  color: #1961aa !important;
+}
+
+.primary-hover:hover {
+  background: #1961aa !important;
+  color: #fff !important;
+}
+.primary-opp-hover:hover {
+  background: #fff !important;
+  color: #1961aa !important;
+  border-color: #1961aa !important;
+}
+
+.primary-alt-bg {
+  background-color: #2196f3 !important;
+}
+
+.primary-alt-border {
+  border: 1px solid #2196f3;
+}
+
+.primary-alt-text {
+  color: #2196f3 !important;
+}
+
+.danger {
+  color: #dc3545;
+}
+
+.secondary-bg {
+  background-color: #e1ece5 !important;
+}
+
+.secondary-alt-bg {
+  background-color: #f8f5ea !important;
+}
+
+.gridient-primary-alt {
+  background-image: linear-gradient(to bottom, #bf9f23, #dec359);
+}
+
+.fa-bg {
+  background-color: #fafafa !important;
+}
+
+.fb-bg {
+  background-color: #fbfbfb !important;
+}
+
+.light-bg {
+  background-color: #ddd !important;
+}
+
+.f1-bg {
+  background-color: #f1f1f1 !important;
+}
+
+.gray-text {
+  color: #888888 !important;
+}
+
+.black-alt-text {
+  color: #414141 !important;
+}
+
+/* font sizes */
+
+.fs-11 {
+  font-size: 11px;
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.fs-13 {
+  font-size: 13px;
+}
+
+.fs-14 {
+  font-size: 14px !important;
+}
+
+.fs-15 {
+  font-size: 15px;
+}
+
+.fs-16 {
+  font-size: 16px !important;
+}
+
+.fs-18 {
+  font-size: 18px;
+}
+
+.fs-20 {
+  font-size: 20px;
+}
+
+.fs-22 {
+  font-size: 22px;
+}
+
+.fs-30 {
+  font-size: 30px;
+}
+
+.fs-25 {
+  font-size: 25px;
+}
+
+.fs-40 {
+  font-size: 40px;
+}
+
+/* text-elpsis  */
+
+.h-1 {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
