@@ -46,7 +46,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <form asp-action="Create">
+                <form asp-action="Create" id="dynamic_form">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="row">
                         <div class="col-md-4">
@@ -77,120 +77,24 @@
                             <div class="Card_Box" style="background-color: #F8F8F8;">
                                 <div class="container">
                                     
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <div class="d-flex flex-column mb-7 fv-row">
-                                                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Select Product</label>
-                                                <select class="form-select" id="productList" name="productList" asp-items="@ViewData["productList"] as SelectList" onchange="FillUnits();">
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="d-flex flex-column mb-7 fv-row">
-                                                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Select Unit</label>
-                                                    <select class="form-select" id="unitList" name="unitList" asp-items="@ViewData["unitList"] as SelectList">
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="d-flex flex-column mb-7 fv-row">
-                                                    <label for="Price" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Price</label>
-                                                    <input id="Price" class="form-control" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="d-flex flex-column mb-7 fv-row">
-                                                    <label for="Quantity" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Quantity</label>
-                                                    <input id="Quantity" class="form-control" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="d-flex flex-column mb-7 fv-row">
-                                                    <label for="Total" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Total</label>
-                                                    <input id="Total" class="form-control" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="d-flex flex-column mb-7 fv-row">
-                                                    <label for="Discount" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Discount</label>
-                                                    <input id="Discount" class="form-control" />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="d-flex flex-column mb-7 fv-row">
-                                                    <label for="Net" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Net</label>
-                                                    <input id="Net" class="form-control" readonly />
-                                                </div>
-                                            </div>
+                                    <div id="append_form">
+
                                     </div>
-                            <div class="table-responsive tableFixHead">
-                                <table id="myTable" class="table table-striped table-hover table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                @Html.DisplayName("Item")
-                                            </th>
-                                            <th>
-                                                @Html.DisplayName("Unit")
-                                            </th>
-                                            <th>
-                                                @Html.DisplayName("Price")
-                                            </th>
-                                            <th>
-                                                @Html.DisplayName("Quantity")
-                                            </th>
-                                            <th>
-                                                @Html.DisplayName("Total")
-                                            </th>
-                                            <th>
-                                                @Html.DisplayName("Discount")
-                                            </th>
-                                            <th>
-                                                @Html.DisplayName("Net")
-                                            </th>
-                                            <th class="text-center" style="width: 120px;">Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach (var item in Model.items)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem=>item.ProductName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem=>item.UnitName)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem=>item.Price)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem=>item.Quantity)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Total)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Discount)
-                                                </td>
-                                                <td>
-                                                    @Html.DisplayFor(modelItem => item.Net)
-                                                </td>
-                                                <td style="width: 120px;">
+                                    <div id="duplicated_form">
+                                        <div class="row" id="">
 
-                                                    <div class="d-flex justify-content-center align-items-center">
-                                                        
-                                                            
-                                                                @*<span class="btn p-0 mx-2" data-toggle="modal" data-target="#editcompanypack-modal" title="Edit" data-url="@Url.Action("Edit", "CompanyPackage", new { companypackid = @item.Id })"><i class="fs-1 las la-edit text-success"></i></span>*@
-
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        }
-                                    </tbody>
-                                </table>
-                            </div>
-                            
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-column mb-7 fv-row">
+                                                    <a href="javascript:void(0)" class="btn btn-primary" id="addItem">Add</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="d-flex flex-column mb-7 fv-row">
+                                                    <a href="javascript:void(0)" class="btn btn-danger" id="deleteItems">Reset</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                             </div>
 
@@ -198,37 +102,33 @@
 
                         <div class="col-md-4">
                             <div class="d-flex flex-column mb-7 fv-row">
-                                <label asp-for="Total" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2"></label>
-                                <input asp-for="Total" class="form-control" />
-                                <span asp-validation-for="Total" class="text-danger"></span>
-                                <span id="sms-count"></span>
+                                <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">Total</label>
+                                <input type="number" name="totalTotal" class="form-control" id="total_total" />
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="d-flex flex-column mb-7 fv-row">
                                 <label asp-for="Taxes" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2"></label>
-                                <input asp-for="Taxes" class="form-control" />
+                                <input type="number" asp-for="Taxes" id="total_tax" class="form-control" />
                                 <span asp-validation-for="Taxes" class="text-danger"></span>
                             </div>
                         </div>
 
                         <div class="col-md-4">
                             <div class="d-flex flex-column mb-7 fv-row">
-                                <label asp-for="Net" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2"></label>
-                                <input asp-for="Net" class="form-control" />
-                                <span asp-validation-for="Net" class="text-danger"></span>
+                                <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">Net</label>
+                                <input type="number" name="totalNet" class="form-control" id="total_net" />
                             </div>
                         </div>
                        
                     @{
                         bool disable = false;
-                        if (!Model.items.Any())
-                            disable = true;
+                        //if (!Model.items.Any())
+                        //    disable = true;
                         }
                         </div>
                     <div class="form-group">
-                        <input type="submit" value="Save" disabled="@disable" class="btn btn-primary" />
-                        <button class="form-control " id="delete" disabled="@disable">Delete</button>
+                        <input type="button" id="save" value="Save" class="btn btn-primary" />
                     </div>
                 </form>
             </div>
@@ -244,43 +144,123 @@
 @section Scripts {
 
 <script type="text/javascript">
+
+        let itemModel = {
+                ProductName:'',
+                UnitName:'',
+                ProductId:0,
+                UnitId:0,
+                StoreId:0,
+                Quantity:0,
+                Price:0,
+                Total:0,
+                Discount:0,
+                Net:0
+        };
+        var global_counter = 1
+        function drawForm() {
+            var html = ` <div class="row">
+                    <h3>Item #${global_counter}</h3>
+                                        <div class="col-md-3">
+                                                <div class="d-flex flex-column mb-7 fv-row">
+                                                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Select Product</label>
+                                                
+                                                      <select class="form-select" id="productList_${global_counter}" name="productList" onchange="FillUnits();">
+                                                            @foreach (var prod in ViewBag.products){
+                                                              <option value="@prod.ProductId">@prod.ProductName</option>
+                                                            }
+                                                      </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column mb-7 fv-row">
+                                                    <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Select Unit</label>
+                                                    <select class="form-select" id="unitList_${global_counter}" name="unitList">
+                                                    @foreach (var unit in ViewBag.units){
+                                                                <option value="@unit.UnitId">@unit.UnitName</option>
+                                                            }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column mb-7 fv-row">
+                                                    <label for="Price" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Price</label>
+                                                    <input type="number" id="Price_${global_counter}" name="price" class="form-control" onkeyup="handleTotals();" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column mb-7 fv-row">
+                                                    <label for="Quantity" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Quantity</label>
+                                                    <input type="number" id="Quantity_${global_counter}" name="quantity" class="form-control" onkeyup="handleTotals();" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column mb-7 fv-row">
+                                                    <label for="Total" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">Total</label>
+                                                    <input type="number" id="Total_${global_counter}" name="total" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column mb-7 fv-row">
+                                                    <label for="Discount" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">Discount</label>
+                                                    <input type="number" id="Discount_${global_counter}" name="discount" class="form-control" onkeyup="handleTotals();" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="d-flex flex-column mb-7 fv-row">
+                                                    <label for="Net" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">Net</label>
+                                                    <input type="number" id="Net_${global_counter}" name="net" class="form-control" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                        <span style="color:red;font-weight:bold;font-size:16px;" class="errors" id="error_${global_counter}"></span>
+                                            </div>
+                                            </div>
+                                            <hr>
+                                            <br>
+                                            `
+                                                    global_counter+=1
+            $("#append_form").append(html)
+        }
     $(document).ready(function () {
-                let dateInput = document.getElementById("invoiceDate");
-        dateInput.min = new Date().toISOString().slice(0, new Date().toISOString().lastIndexOf(":"));
-        // Get a reference to the dropdown list and textarea
-        var templateDropdown = $("#msgTemplateList");
-        var originalMsgTextarea = $("#sms-area");
-        var senderName = $("#sendersList option:selected").text();
-
-        // Listen for changes in the dropdown list
-        templateDropdown.on("change", function () {
-
-            var selectedValue = $(this).val();
-            $.get({
-                url: '@Url.Action("TemplateDropDownList", "Campaign")',
-                data: { type: selectedValue },
-
-                success: function (result) {
-
-                    originalMsgTextarea.val("");
-                    originalMsgTextarea.val(result);
+            $(document).on('click', "#addItem", function() {
+                $("#storeList").attr("disabled",true)
+                drawForm();
+            });
+            $(document).on('click', "#deleteItems", function () {
+                $("#storeList").attr("disabled", false)
+                global_counter = 1
+                $("#append_form").html("")
+            });
+            $(document).on('click', "#save", function () {
+                vaildForm = true;
+                $(".errors").text("")
+                for (var i = 1; i <= global_counter; i++) {
+                    var mySpan = $("#error_" + i);
+                    if (!$("#productList_" + i).val()) {
+                        vaildForm = false;
+                        mySpan.text(mySpan.text() + ' Missing Product');
+                    }
+                    if (!$("#Price_" + i).val()) {
+                        vaildForm = false;
+                        mySpan.text(mySpan.text() + ' Missing Price');
+                    }
+                    if (!$("#Quantity_" + i).val()) {
+                        vaildForm = false;
+                        mySpan.text(mySpan.text() + ' Missing Quantity');
+                    }
 
                 }
+                ValidateQuantities();
+                if (vaildForm)
+                $("#dynamic_form").submit()
             });
-
-
-        });
-        $('#btnSave').on('click', function (event) {
-            var senderName = $("#sendersList option:selected").text();
-            $.get({
-                url: '@Url.Action("TestSMS", "Campaign")',
-                data: { text: originalMsgTextarea.val(), sender: senderName },
-
-                success: function (result) {
-                }
+            $(document).on('change', "#total_tax", function () {
+                var totals = $("#total_total").val()
+                var tax = $("#total_tax").val()
+                if (totals && tax)
+                    $("#total_net").val(totals - tax)
             });
-        });
-
     });
         
     function FillProducts() {
@@ -316,21 +296,29 @@
             FillUnits();
         }
  
-        function FillUnitsNew(productId) {
+    function FillUnitsNew(productId) {
+
+            var inputName = event.target.id;
+            var numericPart = inputName.match(/_(\d+)/);
+            if (numericPart && numericPart.length > 1) {
+                var extractedValue = numericPart[1];
+            }
             var storeId = $("#storeList").val();
             $.ajax({
                 type: "POST",
                 url: "/invoice/LoadUnits",
                 data: { storeId: storeId, productId: productId },
                 success: function (response) {
-                    $("#unitList").empty();
+                    $("#unitList" + extractedValue).empty();
+                    //$("#unitList").empty();
                     var s = '';
                     if (response.length > 0) {
                         $("#errorMsg").text("");
                         for (var i = 0; i < response.length; i++) {
                             s += '<option value="' + response[i].value + '">' + response[i].text + '</option>';
                         }
-                        $('#unitList').html(s);
+                        $("#unitList" + extractedValue).html(s);
+                        //$('#unitList').html(s);
                     }
                     else {
                         $("#errorMsg").text("No unnits for this product in this store");
@@ -346,21 +334,30 @@
         }
         
     function FillUnits() {
+        debugger;
             var storeId = $("#storeList").val();
-            var productId = $("#productList").val();
+            var inputName = event.target.id;
+            var numericPart = inputName.match(/_(\d+)/);
+            //if (numericPart && numericPart.length > 1) {
+            //    var extractedValue = numericPart[1];
+            //}
+            var productId = $("#productList" + numericPart).val();
+            //var productId = $("#productList").val();
             $.ajax({
-                type: "POST",
-                url: "/invoice/LoadUnits",
+                type: "GET",
+                url: "/Invoice/LoadUnits",
                 data: { storeId: storeId, productId: productId },
                 success: function (response) {
-                    $("#unitList").empty();
+                    $("#unitList" + numericPart).empty();
+                    //$("#unitList").empty();
                     var s = '';
                     if (response.length > 0) {
                         $("#errorMsg").text("");
                         for (var i = 0; i < response.length; i++) {
                             s += '<option value="' + response[i].value + '">' + response[i].text + '</option>';
                         }
-                        $('#unitList').html(s);
+                        $('#unitList' + numericPart).html(s);
+                        //$('#unitList').html(s);
                     }
                     else {
                         $("#errorMsg").text("No unnits for this product in this store");
@@ -373,6 +370,165 @@
                     $("#errorMsg").text("Error happened, during search");
                 }
             });
+        }
+        
+    function handleTotals() {
+            var inputName = event.target.id;
+            var numericPart = inputName.match(/_(\d+)/);
+            var price = $("#Price" + numericPart).val();
+            var quantity = $("#Quantity" + numericPart).val();
+            var discount = $("#Discount" + numericPart).val();
+            if (price && quantity) {
+                $("#Total" + numericPart).val(price * quantity)
+                $("#Net" + numericPart).val(price * quantity)
+            }
+            if (price && quantity && discount) {
+                $("#Net" + numericPart).val(((price * quantity)-discount))
+            }
+            var totals = 0;
+            var nets = 0;
+           for(var i = 1; i<=global_counter; i++) {
+               
+                if ($("#Total_" + i).val())
+                    totals += parseInt($("#Total_" + i).val())||0;
+                if ($("#Net_" + i).val())
+                    nets += parseInt($("#Net_" + i).val()) || 0;
+           }
+           $("#total_total").val(totals)
+            var tax = $("#total_tax").val()
+            if (tax)
+                nets -= tax
+           $("#total_net").val(nets)
+        }
+
+    function ValidateQuantities() {
+            vaildForm = true;
+
+            let productArray = [];
+            let unitArray = [];
+            let quantityArray = [];
+
+            for (var i = 1; i <= global_counter; i++) {
+                let product = parseInt($("#productList_" + i).val()) || 0;
+                let unit = parseInt($("#unitList_" + i).val()) || 0;
+                let quantity = parseInt($("#Quantity_" + i).val()) || 0;
+                if (product && unit && unit)
+                {
+                productArray.push(product);
+                unitArray.push(unit);
+                quantityArray.push(quantity);
+                }
+            }
+
+            console.log(productArray);
+            console.log(unitArray);
+            console.log(quantityArray);
+            // Create an object to store summed quantities
+            let summedQuantities = {};
+            // Loop through the arrays and sum quantities for the same product and unit
+            for (let i = 0; i < productArray.length; i++) {
+                let key = `${productArray[i]}_${unitArray[i]}`;
+                if (summedQuantities[key] === undefined) {
+                    summedQuantities[key] = 0;
+                }
+                summedQuantities[key] += quantityArray[i];
+            }
+            // Convert the object to a new array
+            let resultArray = Object.keys(summedQuantities).map(key => {
+                let [productArray, unitArray] = key.split('_');
+                return { productId: productArray, unitId: unitArray, quantity: summedQuantities[key] };
+            });
+            console.log(resultArray);
+
+            // Send the result array to the server using AJAX
+            var storeId = parseInt($("#storeList").val()) || 0;
+            $.ajax({
+                url: '/invoice/CheckQuantity',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ data: resultArray, storeId: storeId }),
+                success: function (response) {
+                    // Handle the response from the server
+                    console.log(response.Success);         // Access Success property
+                    console.log(response.Message);         // Access Message property
+                    console.log(response.ReceivedData);    // Access ReceivedData property
+
+                    // You can use these properties in your JavaScript logic
+                    if (response.Success) {
+                        // Do something if the operation was successful
+                        console.log(response.Message);
+                        console.log(response.ReceivedData);
+                    } else {
+                        // Do something if the operation failed
+                        console.error("Operation failed: " + response.Message);
+                    }
+                    vaildForm=true;
+                    console.log(response);
+                },
+                error: function (error) {
+                    vaildForm=false;
+                    console.error(error);
+                }
+            });
+
+            console.log(resultArray);
+                return vaildForm;
+        }
+
+        // Old data
+        document.getElementById('addItem').addEventListener('click', function () {
+        //// Generate a unique ID for the new item
+        //var newItemId = new Date().getTime();
+        
+        //// Create a new row for the new item
+        //var newRow = document.createElement('tr');
+        //newRow.innerHTML = `
+        //    <td><input type="text" name="newItems[${newItemId}].Description" /></td>
+        //    <td><input type="number" name="newItems[${newItemId}].Price" /></td>
+        //    <td><input type="number" name="newItems[${newItemId}].Quantity" /></td>
+        //    <td></td> <!-- This cell will be updated dynamically with total -->
+        //`;
+
+        //// Add the new row to the table
+        //document.getElementById('invoiceItems').appendChild(newRow);
+    });
+
+        function AddNewItem() {
+            itemModel.ProductName = $('#productList :selected').text();
+            itemModel.UnitName = $('#unitList :selected').text();
+            itemModel.ProductId = parseInt(document.getElementById('productList').value) || 0;
+            itemModel.UnitId = parseInt(document.getElementById('unitList').value) || 0;
+            itemModel.StoreId = parseInt(document.getElementById('storeList').value) || 0;
+            itemModel.Quantity = parseInt(document.getElementById('Quantity').value) || 0;
+            itemModel.Price = parseInt(document.getElementById('Price').value) || 0;
+            itemModel.Total = parseInt(document.getElementById('Total').value) || 0;
+            itemModel.Discount = parseInt(document.getElementById('Discount').value) || 0;
+            itemModel.Net = parseInt(document.getElementById('Net').value) || 0;
+            // Send the data to the server using AJAX
+            $.ajax({
+                url: '/YourController/AddSubItem',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(itemModel),
+                success: function (result) {
+                    // Update the DataTable with the new record
+                    
+                    updateDataTable(result);
+                }
+            });
+        }
+
+        function updateDataTable(result) {
+            // Update your DataTable with the new record
+            // This depends on the DataTable library you are using
+            // For example, if you are using DataTables jQuery plugin:
+            $('#dataTable').DataTable().row.add([
+                result.MainItem,
+                result.SubItems.join(', '),
+                result.AdditionalField1,
+                result.AdditionalField2
+                // Add more fields as needed
+            ]).draw();
         }
 
 </script>

@@ -75,8 +75,10 @@ namespace StocksWeb.Controllers
             else
                 ViewData["RetvalMsg"] = "General error, Please try again later";
 
+            
             ViewData["productList"] = new SelectList(productsList, "ProductId", "ProductName");
-
+            ViewBag.products = productsList;
+            
             // Units List
             List<UnitsListViewModel> unitsList = new();
             Response<List<UnitsListViewModel>> unitsListModel = new Response<List<UnitsListViewModel>>();
@@ -97,8 +99,8 @@ namespace StocksWeb.Controllers
                 ViewData["RetvalMsg"] = "General error, Please try again later";
 
             ViewData["unitList"] = new SelectList(unitsList, "UnitId", "UnitName");
-            
-            invoiceCreateViewModel.items=new List<InvoiceItemsCreateDTO>();
+            ViewBag.units = unitsList;
+            //invoiceCreateViewModel.items=new List<InvoiceItemsCreateDTO>();
 
             return View(invoiceCreateViewModel);
         }
@@ -106,7 +108,7 @@ namespace StocksWeb.Controllers
         // POST: InvoiceController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(InvoiceCreateViewModel invoiceCreateViewModel)
         {
             try
             {
@@ -156,7 +158,7 @@ namespace StocksWeb.Controllers
         }
         
         // AJAX Request
-        [HttpPost]
+        [HttpGet]
         public async Task<JsonResult> LoadUnits(int storeId,int productId)
         {
             Response<List<UnitsListViewModel>> unitsData = new Response<List<UnitsListViewModel>>();
@@ -221,6 +223,27 @@ namespace StocksWeb.Controllers
             Response<List<UnitsListViewModel>>? response = await Helper.GetAPIAsync<List<UnitsListViewModel>>(queryString, token, unitSearchJson);
             return response;
         }
+
+        [HttpPost]
+        public IActionResult CheckQuantity([FromBody] CheckQuantityViewModel request)
+        {
+            string encStoreId = EncryptionHelper.EncryptString(request.StoreId.ToString(), _config.GetValue<string>("Pass"));
+           
+            //ProductSearchViewModel productSearchObj = new ProductSearchViewModel { StoreId = encStoreId };
+            //string productSearchJson = JsonConvert.SerializeObject(productSearchObj);
+            //string queryString = _config.GetValue<string>("ServiceAPIBaseUrl") + $"Product/GetProducts";
+            //string token = HttpContext.User.FindFirst("token")?.Value.ToString();
+            //Response<List<ProductsListViewModel>> response = await Helper.GetAPIAsync<List<ProductsListViewModel>>(queryString, token, productSearchJson);
+            // For demonstration, create a response object
+            var responseObject = new
+            {
+                Success = true,
+                Message = "Data processed successfully",
+                ReceivedData = request
+            };
+            return Json(responseObject);
+        }
+
 
         // GET: InvoiceController/Edit/5
         public ActionResult Edit(int id)
