@@ -17,6 +17,7 @@ namespace StocksWeb.ViewModels
         public decimal Taxes { get; set; }
         public decimal totalNet { get; set; }
         public int TotalItems { get; set; }
+        public string StoreId { get; set; }
         public decimal TotalDiscount { get; set; }
         public List<int> productList { get; set; }
         public List<int> unitList { get; set; }

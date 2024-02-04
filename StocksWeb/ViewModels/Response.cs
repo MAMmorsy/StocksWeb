@@ -35,6 +35,11 @@ namespace StocksWeb.ViewModels
         public T? Data { get; set; }
         public bool IsSucceded { get; set; }
         public List<Error>? Errors { get; set; }
+
+        public static implicit operator Response<T>(Response<List<StoreListViewModel>> v)
+        {
+            throw new NotImplementedException();
+        }
     }
     public class Error
     {

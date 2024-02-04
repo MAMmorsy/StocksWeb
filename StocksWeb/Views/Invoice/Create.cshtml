@@ -52,21 +52,22 @@
                         <div class="col-md-4">
                             <div class="d-flex flex-column mb-7 fv-row">
                                 <label asp-for="InvoiceNo" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require"></label>
-                                <input asp-for="InvoiceNo" class="form-control" />
+                                <input asp-for="InvoiceNo" class="form-control" readonly />
                                 <span asp-validation-for="InvoiceNo" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="d-flex flex-column mb-7 fv-row">
                                 <label asp-for="InvoiceDate" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">Invoice Date</label>
-                                <input asp-for="InvoiceDate" class="form-control" type="datetime-local" id="invoiceDate" />
+                                <input asp-for="InvoiceDate" class="form-control" type="datetime-local" id="invoiceDate" readonly />
                                 <span asp-validation-for="InvoiceDate" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="d-flex flex-column mb-7 fv-row">
                                 <label class="d-flex align-items-center fs-6 fw-semibold form-label mb-2 require">Select Store</label>
-                                <select class="form-select" id="storeList" name="storeList" asp-items="@ViewData["storeList"] as SelectList" onchange="FillProducts();">
+                                
+                                <select asp-for="StoreId" class="form-select" id="storeId" name="StoreId" asp-items="@ViewData["storeList"] as SelectList" onchange="FillProducts();">
                                     
                                 </select>
                             </div>
@@ -85,12 +86,12 @@
 
                                             <div class="col-md-6">
                                                 <div class="d-flex flex-column mb-7 fv-row">
-                                                    <a href="javascript:void(0)" class="btn btn-primary" id="addItem">Add</a>
+                                                    <a href="javascript:void(0)" class="btn btn-primary" id="addItem">Add New Item</a>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="d-flex flex-column mb-7 fv-row">
-                                                    <a href="javascript:void(0)" class="btn btn-danger" id="deleteItems">Reset</a>
+                                                    <a href="javascript:void(0)" class="btn btn-danger" id="deleteItems">Reset Invoice</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -133,8 +134,8 @@
                 </form>
             </div>
         </div>
-        <div>
-            <label class="fs-13 mb-1 alert-danger">@ViewData["RetvalMsg"]</label>
+        <div class="col-md-12">
+            <span style="color:red;font-weight:bold;font-size:16px;" class="spanerrors"></span>
         </div>
 
 
@@ -157,7 +158,8 @@
                 Discount:0,
                 Net:0
         };
-        var global_counter = 1
+        var global_counter = 1;
+        $("#save").attr("disabled", "disabled");
         function drawForm() {
             var html = ` <div class="row">
                     <h3>Item #${global_counter}</h3>
@@ -197,7 +199,7 @@
                                             <div class="col-md-3">
                                                 <div class="d-flex flex-column mb-7 fv-row">
                                                     <label for="Total" class="d-flex align-items-center fs-6 fw-semibold form-label mb-2">Total</label>
-                                                    <input type="number" id="Total_${global_counter}" name="total" class="form-control" />
+                                                            <input type="number" id="Total_${global_counter}" name="total" class="form-control" readonly />
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -226,34 +228,50 @@
             $(document).on('click', "#addItem", function() {
                 $("#storeList").attr("disabled",true)
                 drawForm();
+                $("#save").removeAttr("disabled");
             });
             $(document).on('click', "#deleteItems", function () {
                 $("#storeList").attr("disabled", false)
-                global_counter = 1
-                $("#append_form").html("")
+                global_counter = 1;
+                $("#append_form").html("");
+                $("#save").attr("disabled", "disabled");
             });
             $(document).on('click', "#save", function () {
-                vaildForm = true;
+                var vaildvalues = true;
+                console.log("values first " + vaildvalues)
                 $(".errors").text("")
-                for (var i = 1; i <= global_counter; i++) {
+                for (var i = 1; i < global_counter; i++) {
                     var mySpan = $("#error_" + i);
                     if (!$("#productList_" + i).val()) {
-                        vaildForm = false;
+                        vaildvalues = false;
                         mySpan.text(mySpan.text() + ' Missing Product');
                     }
                     if (!$("#Price_" + i).val()) {
-                        vaildForm = false;
+                        vaildvalues = false;
                         mySpan.text(mySpan.text() + ' Missing Price');
                     }
                     if (!$("#Quantity_" + i).val()) {
-                        vaildForm = false;
+                        vaildvalues = false;
                         mySpan.text(mySpan.text() + ' Missing Quantity');
+                    }
+                    if (!$("#Discount_" + i).val()) {
+                        $("#Discount_" + i).val(0);
                     }
 
                 }
-                ValidateQuantities();
-                if (vaildForm)
-                $("#dynamic_form").submit()
+
+                
+                    if (!$("#productList_" + i).val())
+                console.log("values " + vaildvalues)
+                if (vaildvalues==true) {
+                    let validQuantity = ValidateQuantities();
+                    $("#dynamic_form").submit();
+                    if (validQuantity)
+                    {
+                        
+                    }
+                }
+                
             });
             $(document).on('change', "#total_tax", function () {
                 var totals = $("#total_total").val()
@@ -402,8 +420,7 @@
         }
 
     function ValidateQuantities() {
-            vaildForm = true;
-
+            
             let productArray = [];
             let unitArray = [];
             let quantityArray = [];
@@ -438,8 +455,6 @@
                 let [productArray, unitArray] = key.split('_');
                 return { productId: productArray, unitId: unitArray, quantity: summedQuantities[key] };
             });
-            console.log(resultArray);
-
             // Send the result array to the server using AJAX
             var storeId = parseInt($("#storeList").val()) || 0;
             $.ajax({
@@ -449,88 +464,26 @@
                 data: JSON.stringify({ data: resultArray, storeId: storeId }),
                 success: function (response) {
                     // Handle the response from the server
-                    console.log(response.Success);         // Access Success property
-                    console.log(response.Message);         // Access Message property
-                    console.log(response.ReceivedData);    // Access ReceivedData property
-
-                    // You can use these properties in your JavaScript logic
-                    if (response.Success) {
-                        // Do something if the operation was successful
-                        console.log(response.Message);
-                        console.log(response.ReceivedData);
-                    } else {
-                        // Do something if the operation failed
-                        console.error("Operation failed: " + response.Message);
-                    }
-                    vaildForm=true;
                     console.log(response);
+                    console.log(response.success);         // Access Success property
+                    console.log(response.message);         // Access Message property
+
+                    if (response.success) {
+                        $(".spanerrors").text();
+                        return true;
+                    } else {
+                        $(".spanerrors").text(response.message);
+                        return false;
+                    }
+                    
                 },
                 error: function (error) {
-                    vaildForm=false;
-                    console.error(error);
+                    $("spanerrors").text(' Error while checking the data');
+                    return false;
                 }
             });
-
-            console.log(resultArray);
-                return vaildForm;
+              return  
         }
-
-        // Old data
-        document.getElementById('addItem').addEventListener('click', function () {
-        //// Generate a unique ID for the new item
-        //var newItemId = new Date().getTime();
-        
-        //// Create a new row for the new item
-        //var newRow = document.createElement('tr');
-        //newRow.innerHTML = `
-        //    <td><input type="text" name="newItems[${newItemId}].Description" /></td>
-        //    <td><input type="number" name="newItems[${newItemId}].Price" /></td>
-        //    <td><input type="number" name="newItems[${newItemId}].Quantity" /></td>
-        //    <td></td> <!-- This cell will be updated dynamically with total -->
-        //`;
-
-        //// Add the new row to the table
-        //document.getElementById('invoiceItems').appendChild(newRow);
-    });
-
-        function AddNewItem() {
-            itemModel.ProductName = $('#productList :selected').text();
-            itemModel.UnitName = $('#unitList :selected').text();
-            itemModel.ProductId = parseInt(document.getElementById('productList').value) || 0;
-            itemModel.UnitId = parseInt(document.getElementById('unitList').value) || 0;
-            itemModel.StoreId = parseInt(document.getElementById('storeList').value) || 0;
-            itemModel.Quantity = parseInt(document.getElementById('Quantity').value) || 0;
-            itemModel.Price = parseInt(document.getElementById('Price').value) || 0;
-            itemModel.Total = parseInt(document.getElementById('Total').value) || 0;
-            itemModel.Discount = parseInt(document.getElementById('Discount').value) || 0;
-            itemModel.Net = parseInt(document.getElementById('Net').value) || 0;
-            // Send the data to the server using AJAX
-            $.ajax({
-                url: '/YourController/AddSubItem',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(itemModel),
-                success: function (result) {
-                    // Update the DataTable with the new record
-                    
-                    updateDataTable(result);
-                }
-            });
-        }
-
-        function updateDataTable(result) {
-            // Update your DataTable with the new record
-            // This depends on the DataTable library you are using
-            // For example, if you are using DataTables jQuery plugin:
-            $('#dataTable').DataTable().row.add([
-                result.MainItem,
-                result.SubItems.join(', '),
-                result.AdditionalField1,
-                result.AdditionalField2
-                // Add more fields as needed
-            ]).draw();
-        }
-
 </script>
         
 }

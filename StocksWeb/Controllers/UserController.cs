@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -49,6 +50,8 @@ namespace StocksWeb.Controllers
                             var cI = new ClaimsIdentity(claims, "pwd", "Name", userData.RoleName);
                             var cP = new ClaimsPrincipal(cI);
                             await HttpContext.SignInAsync(cP);
+                            var claimsIdentity = new ClaimsIdentity(
+                claims, CookieAuthenticationDefaults.AuthenticationScheme);
                             return RedirectToAction("Index", "Home"); ;
                         }
                         else

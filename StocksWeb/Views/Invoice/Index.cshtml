@@ -1,0 +1,121 @@
+﻿@model IEnumerable<StocksWeb.ViewModels.InvoiceDataViewModel>
+
+@{
+    ViewData["Title"] = "Invoices List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--begin::Toolbar-->
+<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+    <!--begin::Toolbar container-->
+    <div id="kt_app_toolbar_container" class="d-flex flex-stack w-100">
+        <!--begin::Page title-->
+        <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+            <!--begin::Title-->
+            <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">View Invoice</h1>
+            <!--end::Title-->
+            <!--begin::Breadcrumb-->
+            <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-muted">
+                    <a href="~/" class="text-muted text-hover-primary">Invoice</a>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item">
+                    <span class="bullet bg-gray-400 w-5px h-2px"></span>
+                </li>
+                <!--end::Item-->
+                <!--begin::Item-->
+                <li class="breadcrumb-item text-muted">List</li>
+                <!--end::Item-->
+            </ul>
+            <!--end::Breadcrumb-->
+        </div>
+        <!--end::Page title-->
+
+    </div>
+    <!--end::Toolbar container-->
+</div>
+<!--end::Toolbar-->
+<!-- Page Content and Table -->
+<div class="card shadow px-5 py-8 mb-8">
+
+    <div class="card-body p-0">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive tableFixHead">
+                    <table id="myTable" class="table table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.InvoiceNo)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.InvoiceDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TotalItems)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Total)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Taxes)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TotalDiscount)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Net)
+                                </th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.InvoiceNo)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.InvoiceDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalItems)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Total)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Taxes)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalDiscount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Net)
+                                    </td>
+                                    
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <span style="color:red;font-weight:bold;font-size:16px;" class="spanerrors">@ViewData["RetvalMsg"]</span>
+        </div>
+
+
+    </div>
+</div>
